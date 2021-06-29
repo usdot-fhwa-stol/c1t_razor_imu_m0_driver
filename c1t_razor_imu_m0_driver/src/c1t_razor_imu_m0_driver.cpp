@@ -1,0 +1,32 @@
+#include "c1t_razor_imu_m0_driver/c1t_razor_imu_m0_driver.h"
+
+RazorImuM0DriverWrapper::RazorImuM0DriverWrapper(int argc, char** argv, const std::string& name)
+  : DriverWrapper(argc, argv, name), imu_timeout_(0.5)
+{
+}
+
+void RazorImuM0DriverWrapper::initialize()
+{
+  status_.imu = true;
+}
+
+void RazorImuM0DriverWrapper::pre_spin()
+{
+  this->checkImuTimeout();
+}
+
+void RazorImuM0DriverWrapper::post_spin()
+{
+}
+
+void RazorImuM0DriverWrapper::shutdown()
+{
+}
+
+void RazorImuM0DriverWrapper::checkImuTimeout()
+{
+  if (last_update_time_.isZero() || ros::Time::now() - last_update_time_ > ros::Duration(imu_timeout_))
+  {
+    status_.status = cav_msgs::DriverStatus::OFF;
+  }
+}

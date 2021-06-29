@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<launch>
+    <remap from="imu/data_raw" to="imu_raw"/>
+
+    <!-- Razor IMU M0 wrapper that interfaces with CARMA -->
+    <node name="c1t_razor_imu_m0_driver" pkg="c1t_razor_imu_m0_driver" type="c1t_razor_imu_m0_driver_node" 
+        output="screen"/>
+
+
+    <!-- Actual Razor IMU M0 driver -->
+    <node name="razor_imu_m0_driver" pkg="razor_imu_m0_driver" type="factory_firmware_driver_node" output="screen">
+        <param name="port" type="string" value="/dev/imu"/>
+    </node>
+</launch>
