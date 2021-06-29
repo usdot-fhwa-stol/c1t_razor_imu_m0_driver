@@ -1,0 +1,9 @@
+repositories:
+  razor_imu_m0_driver:
+    type: git
+    url: https://github.com/mitll-ros-pkg/razor_imu_m0_driver.git
+    version: devel
+  serial:
+    type: git
+    url: https://github.com/wjwwood/serial.git
+    version: master
