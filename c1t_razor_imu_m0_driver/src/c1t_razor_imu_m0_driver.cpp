@@ -1,5 +1,7 @@
 #include "c1t_razor_imu_m0_driver/c1t_razor_imu_m0_driver.h"
 
+#include <sensor_msgs/Imu.h>
+
 RazorImuM0DriverWrapper::RazorImuM0DriverWrapper(int argc, char** argv, const std::string& name)
   : DriverWrapper(argc, argv, name), imu_timeout_(0.5)
 {
@@ -8,6 +10,13 @@ RazorImuM0DriverWrapper::RazorImuM0DriverWrapper(int argc, char** argv, const st
 void RazorImuM0DriverWrapper::initialize()
 {
   status_.imu = true;
+
+  imu_sub_ = nh_->subscribe<sensor_msgs::Imu>("imu/data_raw", 1, [this](const sensor_msgs::Imu::ConstPtr& msg){
+    last_update_time_ = ros::Time::now();
+    status_.status = cav_msgs::DriverStatus::OPERATIONAL;
+  });
+
+  private_nh_->param<double>("imu_timeout", imu_timeout_, 0.5);
 }
 
 void RazorImuM0DriverWrapper::pre_spin()
