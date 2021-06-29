@@ -4,7 +4,7 @@
   <version>0.0.0</version>
   <description>The c1t_razor_imu_m0_driver package</description>
 
-  <maintainer email="nvidia@todo.todo">nvidia</maintainer>
+  <maintainer email="carma@dot.gov">CARMA</maintainer>
   <author>Adam Morrissett</author>
 
   <license>TODO</license>
