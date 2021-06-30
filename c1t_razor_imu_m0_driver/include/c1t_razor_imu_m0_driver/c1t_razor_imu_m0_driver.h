@@ -69,7 +69,7 @@ private:
   /**
    * @brief Check if the IMU has timed out
    * 
-   * Check if the time between IMU messages exceeds the timeout threshoold.
+   * Check if the time between IMU messages exceeds the timeout threshold.
    */
   void checkImuTimeout();
 };
