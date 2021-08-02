@@ -27,5 +27,6 @@
     <!-- Actual Razor IMU M0 driver -->
     <node name="razor_imu_m0_driver" pkg="razor_imu_m0_driver" type="factory_firmware_driver_node" output="screen">
         <param name="port" type="string" value="/dev/imu"/>
+        <param name="frame_id" type="string" value="razor_imu"/>
     </node>
 </launch>
